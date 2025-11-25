@@ -1,184 +1,79 @@
-// import 'dart:io';
-
-// void main() {
-//   List<Student> danhSachSinhVien = [];
-
-//   while (true) {
-//     stdout.writeln("QUẢN LÝ SINH VIÊN");
-//     stdout.writeln("1. Thêm sinh viên");
-//     stdout.writeln("2. Hiển thị danh sách sinh viên");
-//     stdout.writeln("3. Tìm sinh viên có điểm trung bình cao nhất");
-//     stdout.writeln("4. Thoát chương trình");
-//     stdout.writeln("Hãy nhập một lựa chọn: ");
-//     int option = int.parse(stdin.readLineSync()!);
-    
-//     if (option == 1) {
-//       stdout.writeln("Nhập tên sinh viên: ");
-//       String name = stdin.readLineSync()!;
-//       stdout.writeln("Nhập tuổi sinh viên: ");
-//       int age = int.parse(stdin.readLineSync()!);
-//       stdout.writeln("Nhập điểm Toán: ");
-//       double diemToan = double.parse(stdin.readLineSync()!);
-//       stdout.writeln("Nhập điểm Lý: ");
-//       double diemLy = double.parse(stdin.readLineSync()!);
-//       stdout.writeln("Nhập điểm Hoá: ");
-//       double diemHoa = double.parse(stdin.readLineSync()!);
-//       Student student = Student(
-//         name: name,
-//         age: age,
-//         diemToan: diemToan,
-//         diemLy: diemLy,
-//         diemHoa: diemHoa
-//       );
-//       danhSachSinhVien.add(student);
-//       stdout.writeln("Thêm sinh viên thành công!");
-//     } else if (option == 2) {
-//       stdout.writeln("DANH SÁCH SINH VIÊN");
-//       for (var student in danhSachSinhVien) {
-//         stdout.writeln(student.toString());
-//       }
-//     } else if (option == 3) {
-//       double avg = 0;
-//       Student? topStudent;
-//       for (var student in danhSachSinhVien) {
-//         final studentAvg =
-//             (student.diemToan + student.diemLy + student.diemHoa) / 3;
-//         if (studentAvg > avg) {
-//           avg = studentAvg;
-//           topStudent = student;
-//         }
-//       }
-//       print('Top SV ${topStudent?.toString()}');
-//     } else {
-//       exit(0);
-//     }
-//   }
-// }
-
-// class Student {
-//   String name;
-//   int age;
-//   double diemToan;
-//   double diemLy;
-//   double diemHoa;
-
-//   Student(
-//     {
-//       required this.name,
-//       required this.age,
-//       required this.diemToan,
-//       required this.diemLy,
-//       required this.diemHoa
-//     }
-//   );
-
-//   @override
-//   String toString() {
-//     return "Tên: $name - Tuổi: $age - Điểm Toán: $diemToan - Điểm Lý: $diemLy - Điểm Hoá: $diemHoa";
-//   }
-// }
-
 import 'dart:io';
 
 void main() {
-  List<Product> products = [];
+  List<Student> danhSachSinhVien = [];
 
   while (true) {
-    stdout.writeln("QUẢN LÝ SẢN PHẨM");
-    stdout.writeln("1. Thêm sản phẩm");
-    stdout.writeln("2. Hiển thị danh sách sản phẩm");
-    stdout.writeln("3. Tìm sản phẩm theo tên");
-    stdout.writeln("4. Bán sản phẩm");
-    stdout.writeln("5. Thoát chương trình");
+    stdout.writeln("QUẢN LÝ SINH VIÊN");
+    stdout.writeln("1. Thêm sinh viên");
+    stdout.writeln("2. Hiển thị danh sách sinh viên");
+    stdout.writeln("3. Tìm sinh viên có điểm trung bình cao nhất");
+    stdout.writeln("4. Thoát chương trình");
     stdout.writeln("Hãy nhập một lựa chọn: ");
     int option = int.parse(stdin.readLineSync()!);
     
     if (option == 1) {
-      stdout.writeln("THÊM SẢN PHẨM");
-      stdout.writeln("Nhập tên sản phẩm: ");
+      stdout.writeln("Nhập tên sinh viên: ");
       String name = stdin.readLineSync()!;
-      stdout.writeln("Nhập giá sản phẩm: ");
-      double giaTien = double.parse(stdin.readLineSync()!);
-      stdout.writeln("Nhập số lượng: ");
-      int soLuong = int.parse(stdin.readLineSync()!);
-      Product product = Product(
+      stdout.writeln("Nhập tuổi sinh viên: ");
+      int age = int.parse(stdin.readLineSync()!);
+      stdout.writeln("Nhập điểm Toán: ");
+      double diemToan = double.parse(stdin.readLineSync()!);
+      stdout.writeln("Nhập điểm Lý: ");
+      double diemLy = double.parse(stdin.readLineSync()!);
+      stdout.writeln("Nhập điểm Hoá: ");
+      double diemHoa = double.parse(stdin.readLineSync()!);
+      Student student = Student(
         name: name,
-        giaTien: giaTien,
-        soLuong: soLuong
+        age: age,
+        diemToan: diemToan,
+        diemLy: diemLy,
+        diemHoa: diemHoa
       );
-      products.add(product);
-      stdout.writeln("Thêm sản phẩm thành công!");
+      danhSachSinhVien.add(student);
+      stdout.writeln("Thêm sinh viên thành công!");
     } else if (option == 2) {
-      stdout.writeln("DANH SÁCH SẢN PHẨM");
-      for (var product in products) {
-        stdout.writeln(product.toString());
+      stdout.writeln("DANH SÁCH SINH VIÊN");
+      for (var student in danhSachSinhVien) {
+        stdout.writeln(student.toString());
       }
     } else if (option == 3) {
-        stdout.writeln("TÌM KIẾM SẢN PHẨM");
-        stdout.writeln("Nhập tên sản phẩm cần tìm kiếm: ");
-        String name = stdin.readLineSync()!;
-        Product? searchedProduct;
-        for (var product in products) {
-          if (name == product.name) {
-            searchedProduct = product;
-            break;
-          }
+      double avg = 0;
+      Student? topStudent;
+      for (var student in danhSachSinhVien) {
+        final studentAvg =
+            (student.diemToan + student.diemLy + student.diemHoa) / 3;
+        if (studentAvg > avg) {
+          avg = studentAvg;
+          topStudent = student;
         }
-
-        if (searchedProduct != null){
-          print('Sản phẩm tìm kiếm: ${searchedProduct.toString()}');
-        } else {
-          print("Không tìm thấy sản phẩm!");
-        }
-    } else if (option == 4) {
-        stdout.writeln("BÁN SẢN PHẨM");
-        stdout.writeln("Nhập tên sản phẩm cần bán: ");
-        String name = stdin.readLineSync()!;
-        Product? searchedProduct;
-        for (var product in products) {
-          if (name == product.name) {
-            searchedProduct = product;
-            break;
-          }
-        }
-        if (searchedProduct != null){
-          stdout.writeln("Nhập số lượng sản phẩm cần bán: ");
-          int soLuong = int.parse(stdin.readLineSync()!);
-          
-          if (name == searchedProduct.name) {
-            if (soLuong > searchedProduct.soLuong) {
-              print("Không đủ số lượng để bán ra!");
-            } else {
-              print("Đã bán $soLuong $name");
-              searchedProduct.soLuong -= soLuong;
-              print('Sản phẩm: ${searchedProduct.toString()}');
-            }
-          }
-          
-        } else {
-          print("Không tìm thấy sản phẩm!");
-        }
+      }
+      print('Top SV ${topStudent?.toString()}');
     } else {
       exit(0);
     }
   }
 }
 
-class Product {
+class Student {
   String name;
-  double giaTien;
-  int soLuong;
+  int age;
+  double diemToan;
+  double diemLy;
+  double diemHoa;
 
-  Product(
+  Student(
     {
       required this.name,
-      required this.giaTien,
-      required this.soLuong,
+      required this.age,
+      required this.diemToan,
+      required this.diemLy,
+      required this.diemHoa
     }
   );
 
   @override
   String toString() {
-    return "Tên sản phẩm: $name - Giá tiền: $giaTien - Số lượng: $soLuong";
+    return "Tên: $name - Tuổi: $age - Điểm Toán: $diemToan - Điểm Lý: $diemLy - Điểm Hoá: $diemHoa";
   }
 }
