@@ -11,9 +11,11 @@ void main() {
     stdout.writeln("2. Thêm sinh viên");
     stdout.writeln("3. Thêm giáo viên");
     stdout.writeln("4. Hiển thị danh sách sinh viên trong lớp học");
-    stdout.writeln("5. Hiển thị thông tin giáo viên");
-    stdout.writeln("6. Hiển thị thông tin sinh viên");
-    stdout.writeln("7. Thoát chương trình");
+    stdout.writeln("5. Hiển thị thông tin giáo viên của lớp học");
+    stdout.writeln("6. Hiển thị danh sách toàn bộ sinh viên");
+    stdout.writeln("7. Hiển thị danh sách toàn bộ giáo viên");
+    stdout.writeln("8. Hiển thị thông tin lớp học");
+    stdout.writeln("9. Thoát chương trình");
     stdout.writeln("Hãy nhập một lựa chọn: ");
     int option = int.parse(stdin.readLineSync()!);
     
@@ -42,10 +44,136 @@ void main() {
             Student student = Student(id, name, age, gender, classrooms[i].name, score);
             classrooms[i].addStudent(student);
             print("Thêm sinh viên thành công");
+            students.add(student);
+            isExisted = true;
+            break;
           }
+        }
+
+        if (!isExisted){
+          print("Lớp học không tồn tại, vui lòng thử lại.");
+        }
+      }
+    } else if (option == 3) {
+      if (classrooms.length == 0){
+        print("Không có lớp học tồn tại. Không thể thêm giáo viên.");
+      } else {
+        stdout.writeln("Nhập id hoặc tên lớp học cần thêm giáo viên: ");
+        String enter = stdin.readLineSync()!;
+        bool isExisted = false;
+        for (int i = 0; i < classrooms.length; i++){
+          if (enter == classrooms[i].id || enter == classrooms[i].name){
+            stdout.writeln("Nhập id giáo viên: ");
+            String id = stdin.readLineSync()!;
+            stdout.writeln("Nhập tên giáo viên: ");
+            String name = stdin.readLineSync()!;
+            stdout.writeln("Nhập tuổi giáo viên: ");
+            int age = int.parse(stdin.readLineSync()!);
+            stdout.writeln("Nhập giới tính giáo viên: ");
+            String gender = stdin.readLineSync()!;
+            stdout.writeln("Nhập môn học: ");
+            String subject = stdin.readLineSync()!;
+            stdout.writeln("Nhập lương: ");
+            double salary = double.parse(stdin.readLineSync()!);
+
+            Teacher teacher = Teacher(id, name, age, gender, subject, salary);
+            classrooms[i].teacher = teacher;
+            print("Gán giáo viên thành công");
+            teachers.add(teacher);
+            isExisted = true;
+            break;
+          }
+        }
+
+        if (!isExisted) {
+          print("Lớp học không tồn tại, vui lòng thử lại.");
+        }
+      }
+    } else if (option == 4) {
+      stdout.writeln("Nhập id hoặc tên lớp học cần hiển thị danh sách sinh viên: ");
+      String enter = stdin.readLineSync()!;
+      bool isExisted = false;
+      for (int i = 0; i < classrooms.length; i++){
+        if (enter == classrooms[i].id || enter == classrooms[i].name){
+          if (classrooms[i].students.length > 0) {
+            print("Danh sách sinh viên trong lớp học");
+            for (int j = 0; j < classrooms[i].students.length; j++){
+              classrooms[i].students[j].info();
+              print("");
+            }
+          } else {
+            print("Hiện không có sinh viên nào tham gia lớp học.");
+          }
+          isExisted = true;
+          break;
+        }
+      }
+
+      if (!isExisted) {
+        print("Lớp học không tồn tại, vui lòng thử lại.");
+      }
+
+    } else if (option == 5) {
+      stdout.writeln("Nhập id hoặc tên lớp học cần hiển thị giáo viên: ");
+      String enter = stdin.readLineSync()!;
+      bool isExisted = false;
+      for (int i = 0; i < classrooms.length; i++){
+        if (enter == classrooms[i].id || enter == classrooms[i].name){
+          if (classrooms[i].teacher.name != "") {
+            print("Thông tin giáo viên của lớp học");
+            classrooms[i].teacher.info();
+          } else {
+            print("Hiện không có giáo viên nào thuộc lớp học.");
+          }
+          isExisted = true;
+          break;
+        }
+      }
+
+      if (!isExisted) {
+        print("Lớp học không tồn tại, vui lòng thử lại.");
+      }
+    } else if (option == 6) {
+      if (students.length == 0) {
+        print("Danh sách sinh viên rỗng");
+      } else {
+        print("DANH SÁCH SINH VIÊN");
+        for (int i = 0; i < students.length; i++){
+          students[i].info();
+          print("");
         }
       }
     } else if (option == 7) {
+      if (teachers.length == 0) {
+        print("Danh sách giáo viên rỗng");
+      } else {
+        print("DANH SÁCH GIÁO VIÊN");
+        for (int i = 0; i < teachers.length; i++){
+          teachers[i].info();
+          print("");
+        }
+      }
+    } else if (option == 8) {
+      if (classrooms.length == 0){
+        print("Không có lớp học nào tồn tại.");
+      } else {
+        stdout.writeln("Nhập id hoặc tên lớp học cần hiển thị thông tin: ");
+        String enter = stdin.readLineSync()!;
+        bool isExisted = false;
+        for (int i = 0; i < classrooms.length; i++){
+          if (enter == classrooms[i].id || enter == classrooms[i].name){
+            classrooms[i].info();
+            isExisted = true;
+            break;
+          }
+        }
+
+        if (!isExisted) {
+          print("Lớp học không tồn tại, vui lòng thử lại sau.");
+        }
+      }
+
+    } else if (option == 9) {
       exit(0);
     }
   }
